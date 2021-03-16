@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/tweets', 'TweetsController@store');
+
 Auth::routes();
+
+/*
+Route::get('/login', function() {
+    return view('auth.login');
+});
+*/
 
 Route::get('/home', 'HomeController@index')->name('home');
