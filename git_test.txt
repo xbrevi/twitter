@@ -1,1 +1,8 @@
+
+28/03/2021 - Trabalho Notebook de casa
+Pasta xampp/htdocs/twitter
+Sincronizado do github ok
+Capitulo 61 de Laravel from Scratch 
+Aqui tem atualização dos fontes.
+
 Teste Desktop/Repositorio Nonus

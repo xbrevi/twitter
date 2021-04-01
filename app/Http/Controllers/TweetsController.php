@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Middleware\Authenticate;
 use App\Tweet;
+
 
 class TweetsController extends Controller
 {
+
+    public function index()
+    {
+
+        // DD(auth()->user()->timeline); // Illuminate\Database\Eloquent\Collection 
+        // DD(auth()->user()->timeline()); // Illuminate\Database\Eloquent\Relations\BelongsToMany
+
+        return view('tweets.index', [
+            'tweets' => auth()->user()->timeline(),
+        ]);
+    }
+
     public function store()
     {
         $attributes = request()->validate([
@@ -18,6 +31,6 @@ class TweetsController extends Controller
             'body' => $attributes['body']
         ]);
 
-        return redirect('/home');
+        return redirect('/tweets');
     }
 }
