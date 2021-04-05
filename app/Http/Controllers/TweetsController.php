@@ -11,7 +11,6 @@ class TweetsController extends Controller
 
     public function index()
     {
-
         // DD(auth()->user()->timeline); // Illuminate\Database\Eloquent\Collection 
         // DD(auth()->user()->timeline()); // Illuminate\Database\Eloquent\Relations\BelongsToMany
 
@@ -33,4 +32,5 @@ class TweetsController extends Controller
 
         return redirect('/tweets');
     }
+
 }
