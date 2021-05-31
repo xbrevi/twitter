@@ -17,7 +17,14 @@ use App\User;
 */
 
 Route::get('/teste', function() {
+    //\Illuminate\Support\Facades\Artisan::call('storage:link');
+    return storage_path();
+});
 
+
+Route::get('/logout', function() {
+    Auth::logout();
+    return redirect('/');    
 });
 
 Route::get('/', function () {
@@ -27,12 +34,20 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', 'TweetsController@index')->name('home');
     Route::post('/tweets', 'TweetsController@store');
-    Route::post('/profiles/{user:name}/follow', 'FollowsController@store');
-    Route::get('/profiles/{user:name}/edit', 'ProfilesController@edit')->middleware('can:edit,user');
+
+    Route::post('/tweets/{tweet}/like', 'TweetLikesController@store');
+    Route::delete('/tweets/{tweet}/like', 'TweetLikesController@destroy');
+
+    //Route::post('/profiles/{user:name}/follow', 'FollowsController@store');
+    Route::post('/profiles/{user:username}/follow', 'FollowsController@store')->name('follow');
+    Route::get('/profiles/{user:username}/edit', 'ProfilesController@edit')->middleware('can:edit,user');
+    Route::patch('/profiles/{user:username}', 'ProfilesController@update')->middleware('can:edit,user');
+    Route::get('/explore', 'ExploreController');
 });
 
 //Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
-Route::get('/profiles/{user:name}', 'ProfilesController@show')->name('profile');
+//Route::get('/profiles/{user:name}', 'ProfilesController@show')->name('profile');
+Route::get('/profiles/{user:username}', 'ProfilesController@show')->name('profile');
 
 Auth::routes();
 

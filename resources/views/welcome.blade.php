@@ -66,7 +66,7 @@
 
                 <div class="links">
                     @auth
-                        <a href="{{ url('/tweets') }}">Tweets</a>
+                        <a href="{{ url('/tweets') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
